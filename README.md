@@ -38,8 +38,8 @@ The application provides the following API endpoints for message management:
 *   **POST /api/messages/send**
     
     *   Send a new message to a recipient.
-        
-    *   ```json
+
+```json
 { "sender": "sender\_username", "receiver": "receiver\_username", "content": "Your message content"}
 ```
         
