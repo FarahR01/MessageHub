@@ -20,14 +20,15 @@ MessageHub is a Node.js application designed to provide a foundation for buildin
 1.  **Prerequisites:**
     
     *   Node.js and npm (or yarn) installed on your system.
-        
-2.  git clone https://https://github.com/FarahR01/MessageHub Utilisez ce code [avec précaution](/faq#coding).content\_copy
-    
-3.  cd messagehubnpm install (or yarn install)Utilisez ce code [avec précaution](/faq#coding).content\_copy
-    
-4.  npm start (or yarn start)Utilisez ce code [avec précaution](/faq#coding).content\_copy
-    
-
+    *   
+2. **Clone the project:**
+```bash
+git clone https://https://github.com/FarahR01/MessageHub
+ ```
+3. **Run the project:**
+```bash
+npm run dev
+```
 This will start the MessageHub application on a default port (typically 3000). You can access the API endpoints using tools like Postman or curl.
 
 **API Documentation**
@@ -38,7 +39,9 @@ The application provides the following API endpoints for message management:
     
     *   Send a new message to a recipient.
         
-    *   { "sender": "sender\_username", "receiver": "receiver\_username", "content": "Your message content"}Utilisez ce code [avec précaution](/faq#coding).content\_copy
+    *   ```json
+{ "sender": "sender\_username", "receiver": "receiver\_username", "content": "Your message content"}
+```
         
 *   **GET /api/messages/receive/:userId**
     
