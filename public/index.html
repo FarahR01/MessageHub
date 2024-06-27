@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.io Chat</title>
+</head>
+<body>
+    <h1>Chat App</h1>
+    <input id="sender" type="text" placeholder="Sender">
+    <input id="receiver" type="text" placeholder="Receiver">
+    <input id="content" type="text" placeholder="Message">
+    <button id="sendButton">Send</button>
+
+    <ul id="messages"></ul>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      let socket;
+  
+      document.addEventListener('DOMContentLoaded', () => {
+          console.log('DOM fully loaded');
+          // Initialize socket connection
+          socket = io();
+  
+          socket.on('connect', () => {
+              console.log('Connected to server, socket id:', socket.id);
+          });
+  
+          socket.on('connect_error', (error) => {
+              console.error('Connection error:', error);
+          });
+  
+          socket.on('message', (message) => {
+              console.log('Received message:', message);
+              const messagesList = document.getElementById('messages');
+              const messageItem = document.createElement('li');
+              messageItem.textContent = `${message.sender}: ${message.content}`;
+              messagesList.appendChild(messageItem);
+          });
+  
+          // Add click event listener to the send button
+          document.getElementById('sendButton').addEventListener('click', sendMessage);
+      });
+  
+      function sendMessage() {
+          if (!socket) {
+              console.error('Socket is not initialized');
+              return;
+          }
+          if (!socket.connected) {
+              console.error('Socket is not connected');
+              return;
+          }
+  
+          const sender = document.getElementById('sender').value;
+          const receiver = document.getElementById('receiver').value;
+          const content = document.getElementById('content').value;
+          
+          console.log('Attempting to send message:', { sender, receiver, content });
+          socket.emit('sendMessage', { sender, receiver, content });
+          console.log('Message emitted');
+      }
+  </script>
+</body>
+</html>
